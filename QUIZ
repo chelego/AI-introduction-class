@@ -1,0 +1,26 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LogisticRegression
+
+p_file = "C:/Users/chelego/Desktop/mobile.csv"
+df = pd.read_csv(p_file)
+
+X = df.drop(columns=['price_range'])
+Y = df['price_range']
+
+le = LabelEncoder()
+Y = le.fit_transform(Y)
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
+    
+LR_model = LogisticRegression(max_iter=200)
+LR_model.fit(X_train, Y_train)
+
+LR_preds = LR_model.predict(X_test)
+
+DC_preds = le.inverse_transform(LR_preds)
+
+print("class:", DC_preds)
+print(df.head())
+print(df.columns)
