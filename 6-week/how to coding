@@ -1,0 +1,43 @@
+1.데이터 전처리
+pd.read_csv() → CSV 파일 읽기
+  
+StandardScaler() → 입력 데이터 정규화
+
+train_test_split() → 학습/테스트셋 나누기
+
+2.텐서 & 데이터 준비
+torch.tensor() → 넘파이 → PyTorch 텐서로 변환
+
+.view(-1, 1) → (N,) → (N, 1) 형태로 reshape
+
+TensorDataset() → X, Y를 쌍으로 묶기
+
+DataLoader() → 배치 단위로 데이터를 나눠줌
+
+3.모델 정의
+nn.Module → 모델 클래스 정의할 때 상속받음
+
+nn.Linear(in, out) → 완전 연결층
+
+nn.ReLU() → 비선형 활성화 함수
+
+nn.Dropout(p) → 과적합 방지용 랜덤 뉴런 끄기
+
+4.학습
+nn.MSELoss() → 손실 함수 (회귀에서만 사용)
+
+optim.Adam(model.parameters(), lr=...)
+
+5.학습 루프 내부
+optimizer.zero_grad() → 이전 gradient 초기화
+
+loss.backward() → 오차 기준으로 gradient 계산
+
+optimizer.step() → 계산된 gradient로 가중치 업데이트
+
+6.예측 / 평가
+model.eval() → 평가(예측) 모드 전환
+
+with torch.no_grad() → 예측 시 gradient 계산 안 하게
+
+plt.plot() → 결과 시각화
